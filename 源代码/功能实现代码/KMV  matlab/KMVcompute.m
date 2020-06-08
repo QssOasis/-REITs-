@@ -1,0 +1,12 @@
+r=0.03551;
+T=1 ;
+SD=31800014304.2900;%流动负债
+LD=18189406581.0500;%长期负债
+DP=1.108*SD+1.126*LD;%修正后DP
+D=DP;
+PriceTheta=0.074676757;%日波动率
+EquityTheta=0.074676757*sqrt(252);%年化波动率
+E=4150345758.1967;%总市值均值
+[Va,AssetTheta]=KMVOptSearch(E,D,r,T,EquityTheta);
+DD=(Va-DP)/(Va*AssetTheta); %计算违约距离
+EDF=normcdf(-DD); %计算违约率
